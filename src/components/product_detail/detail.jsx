@@ -1,6 +1,8 @@
+import { useParams } from "react-router-dom";
 import styles from "./detail.module.css";
 
 export const Detail = () => {
+  const { id } = useParams();
   return (
     <>
       <main className={styles.main}>

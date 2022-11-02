@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Product = ({ product, convertPrice }) => {
   return (
     <Products>
-      <Link to="#">
+      <Link to={`/product/${product.id}`}>
         <div className="product--image">
           <img src={product.image} alt="product" />
         </div>
