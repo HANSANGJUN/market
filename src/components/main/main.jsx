@@ -1,12 +1,12 @@
 import { EventBanner } from "../eventBanner/eventBanner";
 import { Product } from "../products/product";
 import { useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
+import { getProducts } from "../../fetch/fetch";
 
 export const Main = ({ products, setProducts, convertPrice }) => {
   useEffect(() => {
-    axios.get("/data/products.json").then((data) => {
+    getProducts().then((data) => {
       setProducts(data.data.products);
     });
   }, []);

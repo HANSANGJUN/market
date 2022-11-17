@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getProducts } from "../../fetch/fetch";
 
 export const Detail = ({ convertPrice }) => {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export const Detail = ({ convertPrice }) => {
   };
 
   useEffect(() => {
-    axios.get("/data/products.json").then((data) => {
+    getProducts().then((data) => {
       setProduct(
         data.data.products.find((product) => product.id === parseInt(id))
       );
