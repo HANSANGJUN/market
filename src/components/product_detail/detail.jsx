@@ -1,71 +1,104 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export const Detail = () => {
+export const Detail = ({ convertPrice }) => {
   const { id } = useParams();
+
+  const [product, setProduct] = useState({});
+  const [count, setCount] = useState(1);
+
+  const handleCountPlus = (type) => {
+    setCount(count + 1);
+  };
+
+  const handleCountMinus = (type) => {
+    if (count === 0) {
+      return;
+    }
+    setCount(count - 1);
+  };
+
+  useEffect(() => {
+    axios.get("/data/products.json").then((data) => {
+      setProduct(
+        data.data.products.find((product) => product.id === parseInt(id))
+      );
+    });
+  }, [id]);
+
   return (
-    <>
-      <Main>
-        <section className="product">
-          <div className="product_img">
-            <img src="/images/image002.png" alt="product" />
-          </div>
-        </section>
-        <section className="product">
-          <div className="product_info">
-            <p className="seller_store">아이돈케어</p>
-            <p className="product_name">마로네 노트북 파우치</p>
-            <span className="price">
-              1000
-              <span className="unit">원</span>
-            </span>
-          </div>
-
-          <div className="delivery">
-            <p>택배배송 / 무료배송</p>
-          </div>
-
-          <div className="line"></div>
-
-          <div className="amount">
-            <img
-              className="minus"
-              src="/images/icon-minus-line.svg"
-              alt="minus"
-            />
-
-            <div className="count">
-              <span>1</span>
+    product && (
+      <>
+        <Main>
+          <section className="product">
+            <div className="product_img">
+              <img src={product.image} alt="product" />
             </div>
-
-            <img className="plus" src="/images/icon-plus-line.svg" alt="plus" />
-          </div>
-
-          <div className="line"></div>
-
-          <div className="sum">
-            <div>
-              <span className="sum_price">총 상품 금액</span>
-            </div>
-
-            <div className="total_info">
-              <span className="total">
-                총 수량 <span className="total_count">1개</span>
-              </span>
-              <span className="total_price">
-                1000
-                <span className="total_unit">원</span>
+          </section>
+          <section className="product">
+            <div className="product_info">
+              <p className="seller_store">{product.provider}</p>
+              <p className="product_name">{product.name}</p>
+              <span className="price">
+                {convertPrice(product.price + "")}
+                <span className="unit">원</span>
               </span>
             </div>
-          </div>
 
-          <div className="btn">
-            <button className="btn_buy">바로 구매</button>
-            <button className="btn_cart">장바구니</button>
-          </div>
-        </section>
-      </Main>
-    </>
+            <div className="delivery">
+              <p>택배배송 / 무료배송</p>
+            </div>
+
+            <div className="line"></div>
+
+            <div className="amount">
+              <img
+                className="minus"
+                src="/images/icon-minus-line.svg"
+                alt="minus"
+                onClick={handleCountMinus}
+              />
+
+              <div className="count">
+                <span>{count}</span>
+              </div>
+
+              <img
+                className="plus"
+                src="/images/icon-plus-line.svg"
+                alt="plus"
+                onClick={handleCountPlus}
+              />
+            </div>
+
+            <div className="line"></div>
+
+            <div className="sum">
+              <div>
+                <span className="sum_price">총 상품 금액</span>
+              </div>
+
+              <div className="total_info">
+                <span className="total">
+                  총 수량 <span className="total_count">{count}개</span>
+                </span>
+                <span className="total_price">
+                  {convertPrice(product.price * count)}
+                  <span className="total_unit">원</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="btn">
+              <button className="btn_buy">바로 구매</button>
+              <button className="btn_cart">장바구니</button>
+            </div>
+          </section>
+        </Main>
+      </>
+    )
   );
 };
 
