@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getProducts } from "../../fetch/fetch";
 
-export const Detail = ({ convertPrice }) => {
+export const Detail = ({ convertPrice, cart, setCart }) => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
@@ -19,6 +19,40 @@ export const Detail = ({ convertPrice }) => {
     }
     setCount(count - 1);
   };
+
+  // 중복된 물건
+  const overlapQuantity = (id, quantity) => {
+    const found = cart.filter((el) => el.id === id)[0];
+    const idx = cart.indexOf(found);
+    const cartItem = {
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      provider: product.provider,
+      quantity: quantity,
+    };
+    setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
+  };
+
+  //장바구니
+  const handleCart = () => {
+    const cartItem = {
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      provider: product.provider,
+      quantity: count,
+    };
+    const found = cart.find((el) => el.id === cartItem.id);
+    if (found) overlapQuantity(cartItem.id, found.quantity + count);
+    else {
+      setCart([...cart, cartItem]);
+    }
+  };
+
+  console.log("cart:", cart);
 
   useEffect(() => {
     getProducts().then((data) => {
@@ -93,7 +127,9 @@ export const Detail = ({ convertPrice }) => {
 
             <div className="btn">
               <button className="btn_buy">바로 구매</button>
-              <button className="btn_cart">장바구니</button>
+              <button className="btn_cart" onClick={handleCart}>
+                장바구니
+              </button>
             </div>
           </section>
         </Main>
