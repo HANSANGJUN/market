@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const TopNavigationBar = () => {
+export const TopNavigationBar = ({ cart }) => {
   return (
     <Header>
       <div className="inner">
@@ -26,6 +26,13 @@ export const TopNavigationBar = () => {
           <div className="shopping_cart">
             <img src="/images/icon-shopping-cart.svg" alt="cart" />
             <span>장바구니</span>
+            {cart.length >= 1 ? (
+              <div className="new_shopping_cart">
+                <p>{cart.length}</p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </Link>
         <Link to="">
