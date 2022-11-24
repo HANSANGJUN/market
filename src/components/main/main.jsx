@@ -3,6 +3,7 @@ import { Product } from "../products/product";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { getProducts } from "../../fetch/fetch";
+import Carousel from "../eventBanner/carousel";
 
 export const Main = ({ products, setProducts, convertPrice }) => {
   useEffect(() => {
@@ -13,6 +14,7 @@ export const Main = ({ products, setProducts, convertPrice }) => {
 
   return (
     <>
+      <Carousel />
       {/* <EventBanner /> */}
       <Filter>
         <p>최신순</p>
