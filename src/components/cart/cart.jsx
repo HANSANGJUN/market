@@ -129,6 +129,7 @@ const CartStyle = styled.div`
     font-size: 18px;
     color: #767676;
   }
+
   .cart_product_list {
     position: relative;
     max-width: 1280px;
