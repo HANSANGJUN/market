@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import CartHeader from "./CartHeader";
+import CartList from "./CartList";
+import TotalCart from "./TotalCart";
 
 export const Cart = () => {
   return (
@@ -6,80 +9,9 @@ export const Cart = () => {
       <div className="header">
         <h1>장바구니</h1>
       </div>
-      <div className="cartTitleWrap">
-        <div className="tab_title">
-          <input type="checkbox" />
-          <span>상품정보</span>
-          <span>수량</span>
-          <span>상품금액</span>
-
-          <p>전체선택</p>
-        </div>
-      </div>
-
-      <div className="cart_product_list">
-        <input type="checkbox" />
-        <div className="cart_product_wrap">
-          <div className="cart_product_image">
-            <img src="images/image001.png" alt="product-img" />
-          </div>
-
-          <div className="cart_product_info">
-            <p className="seller_store">아이돈케어</p>
-            <p className="product_name">노트북 파우치</p>
-            <p className="price">1000원</p>
-            <p className="delivery">택배배송 / 무료배송</p>
-          </div>
-        </div>
-
-        <div className="cart_product_count">
-          <img
-            className="minus"
-            src="/images/icon-minus-line.svg"
-            alt="minus"
-          />
-
-          <div className="count">
-            <span>5</span>
-          </div>
-          <img className="plus" src="/images/icon-plus-line.svg" alt="plus" />
-        </div>
-
-        <div className="cart_product_price">
-          <p className="total_price"></p>
-          <button className="btn_submit">주문하기</button>
-        </div>
-
-        <div className="product_remove">
-          <img src="/images/icon-delete.svg" alt="delete" />
-        </div>
-      </div>
-
-      <div className="total">
-        <div className="total_price">
-          <p className="cart_product_total_price">총 상품금액</p>
-          <p className="cart_product_price">0</p>
-        </div>
-        <div className="pay_minus">
-          <img src="/images/icon-minus-line.svg" alt="minus" />
-        </div>
-        <div className="sale">
-          <p className="cart_product_sale">상품 할인</p>
-          <p className="cart_product_sale_price">0원</p>
-        </div>
-        <div className="pay_plus">
-          <img src="/images/icon-plus-line.svg" alt="plus" />
-        </div>
-        <div className="delivery">
-          <p className="cart_product_delivery">배송비</p>
-          <p className="cart_product_delivery_price">0원</p>
-        </div>
-
-        <div className="payment">
-          <p className="cart_prouct_payment">결제 예정 금액</p>
-          <p className="cart_prouct_payment_price">0</p>
-        </div>
-      </div>
+      <CartHeader />
+      <CartList />
+      <TotalCart />
     </CartStyle>
   );
 };
@@ -129,7 +61,6 @@ const CartStyle = styled.div`
     font-size: 18px;
     color: #767676;
   }
-
   .cart_product_list {
     position: relative;
     max-width: 1280px;

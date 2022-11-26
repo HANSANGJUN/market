@@ -1,5 +1,290 @@
 import React from "react";
+import styled from "styled-components";
 
-export default function totalCart() {
-  return <div>totalCart</div>;
+export default function TotalCart() {
+  return (
+    <CartStyle>
+      <div className="total">
+        <div className="total_price">
+          <p className="cart_product_total_price">총 상품금액</p>
+          <p className="cart_product_price">0</p>
+        </div>
+        <div className="pay_minus">
+          <img src="/images/icon-minus-line.svg" alt="minus" />
+        </div>
+        <div className="sale">
+          <p className="cart_product_sale">상품 할인</p>
+          <p className="cart_product_sale_price">0원</p>
+        </div>
+        <div className="pay_plus">
+          <img src="/images/icon-plus-line.svg" alt="plus" />
+        </div>
+        <div className="delivery">
+          <p className="cart_product_delivery">배송비</p>
+          <p className="cart_product_delivery_price">0원</p>
+        </div>
+
+        <div className="payment">
+          <p className="cart_prouct_payment">결제 예정 금액</p>
+          <p className="cart_prouct_payment_price">0</p>
+        </div>
+      </div>
+    </CartStyle>
+  );
 }
+
+const CartStyle = styled.div`
+  .not {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .not h2 {
+    font-size: 18px;
+    line-height: 23px;
+    color: #000000;
+  }
+
+  .not p {
+    font-size: 14px;
+    line-height: 18px;
+    color: #767676;
+  }
+
+  /* total cart */
+  .total {
+    max-width: 1280px;
+    height: 150px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    place-items: center;
+  }
+
+  .total p,
+  .total div,
+  .total img {
+    background: #f2f2f2;
+  }
+
+  .total .total_price,
+  .total .sale,
+  .total .delivery,
+  .total .payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .total_price .cart_product_total_price,
+  .sale .cart_product_sale,
+  .delivery .cart_product_delivery {
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+
+  .total_price .cart_product_price,
+  .sale .cart_product_sale_price,
+  .delivery .cart_product_delivery_price {
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+  }
+
+  .pay_minus {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff !important;
+  }
+
+  .pay_minus img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+  }
+
+  .pay_plus {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff !important;
+  }
+
+  .pay_plus img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+  }
+
+  .payment .cart_prouct_payment {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+
+  .payment .cart_prouct_payment_price {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #eb5757;
+  }
+
+  .btn {
+    width: 1280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  .btn .btn_submit {
+    margin: 0 auto;
+    width: 220px;
+    height: 68px;
+    background: #19ce60;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    color: #ffffff;
+  }
+
+  .product_remove {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1280px) {
+    .tab_title,
+    .cart_product_list,
+    .total {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tab_title {
+      display: flex;
+      padding-left: 50px;
+    }
+    .tab_title span {
+      display: none;
+    }
+
+    .tab_title p {
+      display: block;
+      margin-left: 50px;
+    }
+
+    .cart_product_list {
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cart_product_wrap {
+      padding: 15px;
+    }
+
+    .cart_product_list input[type="checkbox"] {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
+
+    .cart_product_list .cart_product_price {
+      width: 80%;
+    }
+
+    .cart_product_count {
+      left: 75px;
+      margin-bottom: 10px;
+    }
+
+    .cart_product_price .btn_submit {
+      width: 100%;
+    }
+
+    .pay_minus,
+    .pay_plus {
+      display: none;
+    }
+    .total {
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      height: 175px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cart_product_image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cart_product_info p {
+      font-size: 12px !important;
+    }
+
+    .cart_product_count {
+      left: 45px;
+    }
+
+    .total_price .cart_product_total_price,
+    .sale .cart_product_sale,
+    .delivery .cart_product_delivery,
+    .payment .cart_prouct_payment {
+      font-size: 14px;
+    }
+
+    .total_price .cart_product_price,
+    .sale .cart_product_sale_price,
+    .delivery .cart_product_delivery_price {
+      font-size: 18px;
+    }
+
+    .payment .cart_prouct_payment_price {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .cart_product_info {
+      width: initial;
+    }
+  }
+`;

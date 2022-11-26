@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { getProducts } from "../../fetch/fetch";
 import Carousel from "../eventBanner/carousel";
+import cartHeader from "../cart/CartHeader";
 
 export const Main = ({ products, setProducts, convertPrice }) => {
   useEffect(() => {
