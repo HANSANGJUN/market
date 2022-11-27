@@ -5,6 +5,8 @@ import Home from "./pages/home";
 import Product from "./pages/product";
 import Basket from "./pages/basket";
 import { useState } from "react";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -37,6 +39,8 @@ function App() {
           }
         />
         <Route path="/cart" element={<Basket />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
