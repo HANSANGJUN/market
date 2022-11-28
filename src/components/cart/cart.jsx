@@ -3,15 +3,56 @@ import CartHeader from "./CartHeader";
 import CartList from "./CartList";
 import TotalCart from "./TotalCart";
 
-export const Cart = () => {
+export const Cart = ({ cart, setCart, convertPrice }) => {
+  const handleRemoveItem = (id) => {
+    setCart(cart.filter((el) => el.id !== id));
+  };
+
+  const handleQuantity = (type, id, quantity) => {
+    const found = cart.filter((el) => el.id === id)[0];
+    const index = cart.indexOf(found);
+
+    const cartItem = {
+      id: found.id,
+      image: found.image,
+      name: found.name,
+      price: found.price,
+      quantity: quantity,
+      provider: found.provider,
+    };
+
+    if (type === "plus") {
+      setCart([...cart.slice(0, index), cartItem, ...cart.slice(index + 1)]);
+    } else {
+      if (quantity === 0) return;
+      setCart([...cart.slice(0, index), cartItem, ...cart.slice(index + 1)]);
+    }
+  };
   return (
     <CartStyle>
       <div className="header">
         <h1>장바구니</h1>
       </div>
       <CartHeader />
-      <CartList />
-      <TotalCart />
+      {cart.length === 0 ? (
+        <div className="not">
+          <h2>장바구니에 담긴 상품이 없습니다.</h2>
+          <p>원하는 상품을 장바구니에 담아보세요</p>
+        </div>
+      ) : (
+        cart.map((cart) => {
+          return (
+            <CartList
+              key={`key-${cart.id}`}
+              cart={cart}
+              convertPrice={convertPrice}
+              handleQuantity={handleQuantity}
+              handleRemoveItem={handleRemoveItem}
+            />
+          );
+        })
+      )}
+      {cart.length === 0 ? "" : <TotalCart />}
     </CartStyle>
   );
 };
@@ -217,6 +258,7 @@ const CartStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10rem;
   }
 
   .not h2 {

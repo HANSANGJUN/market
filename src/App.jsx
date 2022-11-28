@@ -38,7 +38,12 @@ function App() {
             />
           }
         />
-        <Route path="/cart" element={<Basket />} />
+        <Route
+          path="/cart"
+          element={
+            <Basket cart={cart} setCart={setCart} convertPrice={convertPrice} />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
