@@ -37,6 +37,7 @@ const Banner = styled.div`
   height: 500px;
   background: #f2f2f2;
   margin-bottom: 80px;
+  margin-right: 350px;
 
   .right {
     position: absolute;

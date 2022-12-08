@@ -15,7 +15,7 @@ export const Main = ({ products, setProducts, convertPrice }) => {
 
   return (
     <>
-      <Carousel />
+      {/* <Carousel /> */}
       {/* <EventBanner /> */}
       <Filter>
         <p>최신순</p>

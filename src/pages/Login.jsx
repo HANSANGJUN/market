@@ -56,11 +56,11 @@ export default function Login() {
     <StyledLogin>
       <div className="button">
         <button className="google">
-          <FcGoogle className="google-icon" />
+          {/* <FcGoogle className="google-icon" /> */}
           Login with Google
         </button>
         <button className="git">
-          <GoMarkGithub className="git-icon" />
+          {/* <GoMarkGithub className="git-icon" /> */}
           Login with Github
         </button>
       </div>
